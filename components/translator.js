@@ -25,8 +25,16 @@ class Translator {
 
         Object.keys(dict).forEach((key) => {
             if (searchText.includes(key)) {
-                let re = new RegExp(key, "ig");
-                translatedText = translatedText.replace(re, '<span class="highlight">' + dict[key] + '</span>');
+
+                if (searchText.indexOf(key) == 0) {
+                    let re = new RegExp('(' + key + ')( |\\.|-|\\!|\\?)', "ig");
+                    translatedText = translatedText.replace(re, '<span class="highlight">' + dict[key] + '</span>' + "$2");
+                }
+                else {
+                    let re = new RegExp('( |-)(' + key + ')( |\\.|-|\\!|\\?)', "ig");
+                    translatedText = translatedText.replace(re, "$1" + '<span class="highlight">' + dict[key] + '</span>' + "$3");
+                }
+
                 searchText = translatedText.toLowerCase();
             }
         })
@@ -44,22 +52,18 @@ class Translator {
     }
 
     americanToBritishTranslator(text) {
-        //let regex = /[ .:;?!~,`"&|()<>{}\[\]\r\n/\\]+/
-        //let words = text.split(regex);
-
         let translatedText = this.translate(text, americanToBritDict);
 
-        let timeRegex = /(\d\d):(\d\d)/;
+        let timeRegex = /(\d\d?):(\d\d)/;
         translatedText = translatedText.replace(timeRegex, '<span class="highlight">' + "$1" + "." + "$2" + '</span>');
 
         return translatedText
     }
 
     britishToAmericanTranslator(text) {
-
         let translatedText = this.translate(text, britishToAmericanDict);
 
-        let timeRegex = /(\d\d).(\d\d)/;
+        let timeRegex = /(\d\d?).(\d\d)/;
         translatedText = translatedText.replace(timeRegex, '<span class="highlight">' + "$1" + ":" + "$2" + '</span>');
 
         return translatedText

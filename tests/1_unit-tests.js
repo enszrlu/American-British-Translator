@@ -39,7 +39,7 @@ suite('Unit Tests', () => {
             done();
         });
         test('Translate No Mr. Bond, I expect you to die. to British English', (done) => {
-            assert.equal(translator.americanToBritishTranslator('No Mr. Bond, I expect you to die.'), 'No <span class="highlight">Mr</span> Bond, I expect you to die.');
+            assert.equal(translator.americanToBritishTranslator('No Mr. Bond, I expect you to die.'), 'No <span class="highlight">mr</span> Bond, I expect you to die.');
             done();
         });
         test('Translate Dr. Grosh will see you now. to British English', (done) => {
@@ -82,7 +82,7 @@ suite('Unit Tests', () => {
             done();
         });
         test('Translate Have you met Mrs Kalyani? to British English', (done) => {
-            assert.equal(translator.britishToAmericanTranslator('Have you met Mrs Kalyani?'), 'Have you met <span class="highlight">Mrs.</span> Kalyani?');
+            assert.equal(translator.britishToAmericanTranslator('Have you met Mrs Kalyani?'), 'Have you met <span class="highlight">mrs.</span> Kalyani?');
             done();
         });
         test('Translate Prof Joyner of King\'s College, London. to British English', (done) => {
@@ -90,7 +90,7 @@ suite('Unit Tests', () => {
             done();
         });
         test('Translate Tea time is usually around 4 or 4.30. to British English', (done) => {
-            assert.equal(translator.britishToAmericanTranslator('Tea time is usually around 4 or 4.30.'), 'Tea time is usually around 4 or <span class="highlight">4.30</span>.');
+            assert.equal(translator.britishToAmericanTranslator('Tea time is usually around 4 or 4.30.'), 'Tea time is usually around 4 or <span class="highlight">4:30</span>.');
             done();
         });
 
